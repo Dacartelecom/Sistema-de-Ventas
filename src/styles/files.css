@@ -1,0 +1,15 @@
+
+.sections-files{
+    margin-top: 2rem;
+    padding: 0 3rem;
+}
+
+.sections-files .col-4{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.section{
+    cursor: pointer;
+}

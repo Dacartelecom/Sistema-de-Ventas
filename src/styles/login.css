@@ -1,0 +1,46 @@
+
+.login-container{
+    width: 100%;
+    background-image: url(../img/pexels-yan-krukov-8867262.jpg);
+    background-size: cover;
+    background-repeat:no-repeat;
+    background-position:center center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.login-body{
+    min-width: 350px;
+    min-height: 300px;
+    padding: 1.5rem;
+    border-radius: .5rem;
+    /* From https://css.glass */
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(3px);
+    -webkit-backdrop-filter: blur(3px);
+}
+
+.login-body .modal-header{
+    display: flex;
+    justify-content: center;
+    margin-bottom: 1rem;
+}
+
+.login-body .modal-header h5{
+    font-weight: 500;
+    font-size: 1.5em;
+}
+
+.login-body .modal-body{
+    color: #000;
+    font-size: 1.3em;
+    font-weight: 400;
+}
+
+.login-body .modal-footer{
+    display: flex;
+    justify-content: center;
+}

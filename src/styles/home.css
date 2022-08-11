@@ -1,0 +1,10 @@
+
+.table-sales{
+    margin-top: 2rem;
+}
+
+.cards-container{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}

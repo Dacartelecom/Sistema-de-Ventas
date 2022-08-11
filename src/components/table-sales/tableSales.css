@@ -1,0 +1,34 @@
+
+.table-container{
+    border-radius: 1rem;
+    font-size: 1.1em;
+    font-weight: 410;
+    border-radius: 1rem;
+    background: #fff;
+    text-transform: uppercase;
+}
+
+.table-container div:first-child{
+    border-top: 0;
+}
+
+.table-row{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    margin: 0 .5rem;
+    padding: .2rem .5rem;
+    border-top: 1px solid #000;
+}
+
+.table-row div{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.table-row div:last-child{
+    border-right: 0;
+}

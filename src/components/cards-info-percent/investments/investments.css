@@ -1,0 +1,42 @@
+
+.investments-container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 1rem;
+    border: 1px solid #fff;
+    border-radius: 2rem;
+}
+
+.investments-title{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 3rem;
+}
+
+.investments-title:first-child{
+    margin-bottom: .8rem;
+}
+
+.investments-title:last-child{
+    margin-top: .8rem;
+}
+
+.investments-title a ion-icon{
+    color: #fff;
+    font-size: 1.3em;
+}
+
+.investments-body{
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+#investments{
+    color: #000;
+}

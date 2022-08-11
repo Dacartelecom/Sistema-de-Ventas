@@ -1,0 +1,51 @@
+
+.cards-info{
+    margin-top: 3rem;
+    padding: 1rem;
+    width: 40vw;
+    background: #112033;
+    color: #fff;
+    text-align: center;
+    border: .5rem solid #fff;
+    border-radius: 2rem;
+}
+
+.percent-container{
+    padding: 1.5rem;
+}
+
+.percent-general{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.info-text-general{
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.info-text-general p{
+    text-transform: uppercase;
+    font-size: 1.8em;
+    letter-spacing: .2rem;
+}
+
+.percent-products{
+    font-size: 1.4em;
+    margin-top: 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.percent-products div{
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.investment{
+    margin-top: 2rem;
+}

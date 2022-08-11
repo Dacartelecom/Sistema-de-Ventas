@@ -1,0 +1,67 @@
+
+.download{
+    margin-top: 2rem;
+    padding: 0 3rem;
+}
+
+.download-container{
+    padding: 0 3rem;
+}
+
+.download-container .row div:nth-child(2){
+    border-left: 2px solid #000;
+    border-right: 2px solid #000;
+}
+
+.download-container .row{
+    padding: 1rem 0;
+    border-bottom: 2px solid #000;
+}
+
+.download-container .row:last-child{
+    border-bottom: 0;
+}
+
+.download-btn{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.download-btn a{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: .5rem;
+}
+
+.strong{
+    color: #000;
+    font-size: 1.5em;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.nav-pagination{
+    margin-top: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.button-pagination{
+    cursor: pointer;
+    padding: .5rem;
+    border-radius: .3rem;
+    border: 1px solid #aaabad;
+    color: #000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: .3rem;
+}
+
+.disabled{
+    color: #aaabad;
+    cursor: default;
+}

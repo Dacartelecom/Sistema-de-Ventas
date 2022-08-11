@@ -1,0 +1,38 @@
+.nav-left__body{
+    background: #0d6efd;
+    width: 3vw;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.nav-left__container{
+    margin-top: 1.5rem;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.nav-left__section{
+    color: #000;
+    font-size: 2em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.nav-left__section :hover{
+    color: #aaa;
+}
+
+.nav-left__section ion-icon{
+    left: -.2rem;
+}
+
+.select{
+    color: #fff;
+}

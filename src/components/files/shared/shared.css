@@ -1,0 +1,30 @@
+
+.shared{
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+}
+
+.shared .modal-body .col-5,.shared .modal-body .col-4,.shared .modal-body .col-2{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.shared-container{
+    padding: 0 3rem;
+}
+
+.users-content{
+    margin-top: 1rem;
+}
+
+.select-area{
+    margin-bottom: 1rem;
+}
+
+.user-shared{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 3rem;
+}

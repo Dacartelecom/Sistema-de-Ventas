@@ -1,0 +1,30 @@
+
+.upload{
+    margin-top: 2rem;
+    padding: 0 3rem;
+}
+
+.upload-container{
+    width: 50%;
+    padding: 1rem 3rem;
+}
+
+.upload-container label{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    font-size: 1.2em;
+    gap: 1rem;
+}
+
+.upload-container .col-2{
+    margin-top: 1rem;
+}
+
+.upload-container .col-2 .btn.btn-primary{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.2em !important;
+    gap: .5rem;
+}

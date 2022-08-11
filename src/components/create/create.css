@@ -1,0 +1,57 @@
+
+.create-container{
+    color: #fff;
+    margin-top: 2rem;
+}
+
+.create-container .title{
+    display: flex;
+}
+
+.create-container .goal,.goal .col-4,.goal .col-3,.goal .col-1{
+    padding: 0;
+}
+
+.create-container div{
+    padding: 0 3rem;
+}
+
+.create-body,.update-body{
+    margin-top: 1rem;
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+}
+
+.solds-body{
+    margin-top: 1rem;
+    display: grid;
+    grid-template-columns: repeat(6,1fr);
+}
+
+.create-body div,.update-body div,.solds-body div{
+    padding: 0;
+}
+
+.create-form-body{
+    min-width: 255px;
+    color: #000;
+    font-weight: 500;
+    padding: .8rem !important;
+    border-radius: 1rem;
+}
+
+.create-form-body .row{
+    margin-bottom: 1rem;
+}
+
+.create-form-body form{
+    margin-top: 1rem;
+}
+
+.create-sold{
+    display: flex;
+}
+
+.goal label{
+    font-size: 1.5em;
+}
