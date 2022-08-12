@@ -11,7 +11,7 @@ const Products = ({product,id,dayTime}) => {
         if (product) {
             const getSold =async ()=>{
                 try {
-                    const res = await axios.get(`https://api-dacartelecom.herokuapp.com/api/v1/solds/get/querys?startDate=${dayTime}&userId=${id}&productId=${product?.id}`,getConfig());
+                    const res = await axios.get(`https://sistema-de-ventas-api.herokuapp.com/api/v1/solds/get/querys?startDate=${dayTime}&userId=${id}&productId=${product?.id}`,getConfig());
                     setSale(res.data.sales[0].sold);
                     setSaleId(res.data.sales[0].id);
                 } catch (error) {

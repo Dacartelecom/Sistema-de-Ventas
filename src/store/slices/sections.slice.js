@@ -21,12 +21,12 @@ export const getSections = (campaign) =>async (dispatch) => {
     if (valid.headers.Authorization !== "Bearer null") {
         try {
             if (localStorage.getItem('section')) {
-                const res = await axios.get(`https://api-dacartelecom.herokuapp.com/api/v1/sections/${localStorage.getItem("section")}`,getConfig());
+                const res = await axios.get(`https://sistema-de-ventas-api.herokuapp.com/api/v1/sections/${localStorage.getItem("section")}`,getConfig());
                 dispatch(setSections([res.data.section]));
                 dispatch(setSectionSelect(res.data.section))
                 res.data.section.name.toLowerCase().includes('hogar') ? dispatch(setUgi(true)) : dispatch(setUgi(false));
             } else {
-                const res = await axios.get(`https://api-dacartelecom.herokuapp.com/api/v1/sections/get/query?campaignId=${campaign}`,getConfig());
+                const res = await axios.get(`https://sistema-de-ventas-api.herokuapp.com/api/v1/sections/get/query?campaignId=${campaign}`,getConfig());
                 dispatch(setSections(res.data.sections));
                 dispatch(setSectionSelect(res.data.sections[0]));
                 res.data.sections[0].name.toLowerCase().includes('hogar') ? dispatch(setUgi(true)) : dispatch(setUgi(false));

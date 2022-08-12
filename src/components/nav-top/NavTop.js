@@ -202,7 +202,7 @@ const NavTop = () => {
 
             try {
                 dispatch(setIsLoadding(true));
-                await axios.patch(`https://api-dacartelecom.herokuapp.com/api/v1/users/update/password/${localStorage.getItem('id')}`,body,getConfig());
+                await axios.patch(`https://sistema-de-ventas-api.herokuapp.com/api/v1/users/update/password/${localStorage.getItem('id')}`,body,getConfig());
                 dispatch(setIsLoadding(false));
                 setLastPassError(false);
                 setSamePass(false);
@@ -303,7 +303,7 @@ const NavTop = () => {
 
             try {
                 dispatch(setIsLoadding(true));
-                await axios.post('https://api-dacartelecom.herokuapp.com/api/v1/users/create',body,getConfig());
+                await axios.post('https://sistema-de-ventas-api.herokuapp.com/api/v1/users/create',body,getConfig());
                 dispatch(setIsLoadding(false));
                 dispatch(setSuccessOrError('success'));
                 reset(defaultValues);
@@ -331,14 +331,14 @@ const NavTop = () => {
         if (selectRole?.name !== 'roles') {
             if (rolesFilter.includes(selectRole?.name)) {
                 try {
-                    const res = await axios.get(`https://api-dacartelecom.herokuapp.com/api/v1/users/get/querys?roleId=${selectRole?.id}&campaignId=${userCamp?.id}&sectionId=${userSect?.id}`,getConfig());
+                    const res = await axios.get(`https://sistema-de-ventas-api.herokuapp.com/api/v1/users/get/querys?roleId=${selectRole?.id}&campaignId=${userCamp?.id}&sectionId=${userSect?.id}`,getConfig());
                     setUsers(res.data.users);
                 } catch (error) {
                     console.log(error.response.data);
                 };
             } else {
                 try {
-                    const res = await axios.get(`https://api-dacartelecom.herokuapp.com/api/v1/users/get/querys?roleId=${selectRole?.id}`,getConfig());
+                    const res = await axios.get(`https://sistema-de-ventas-api.herokuapp.com/api/v1/users/get/querys?roleId=${selectRole?.id}`,getConfig());
                     setUsers(res.data.users);
                 } catch (error) {
                     console.log(error.response.data);

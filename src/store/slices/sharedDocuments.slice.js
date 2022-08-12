@@ -16,7 +16,7 @@ export const getSharedDocuments = () =>async (dispatch) => {
     let proob = getConfig()
     if (proob.headers.Authorization !== "Bearer null") {
         try {
-            const res = await axios.get(`https://api-dacartelecom.herokuapp.com/api/v1/files/get/permission`,getConfig());
+            const res = await axios.get(`https://sistema-de-ventas-api.herokuapp.com/api/v1/files/get/permission`,getConfig());
             dispatch(setSharedDocuments(res.data.data));
         } catch (error) {
             console.log(error.response.data);

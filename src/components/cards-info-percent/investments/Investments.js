@@ -108,7 +108,7 @@ const Investments = () => {
             };
             try {
                 dispatch(setIsLoadding(true));
-                await axios.post(`https://api-dacartelecom.herokuapp.com/api/v1/investments/create/${sectionSelect.campaignId}/${sectionSelect.id}`,body,getConfig());
+                await axios.post(`https://sistema-de-ventas-api.herokuapp.com/api/v1/investments/create/${sectionSelect.campaignId}/${sectionSelect.id}`,body,getConfig());
                 dispatch(setIsLoadding(false));
                 success = true;
                 dispatch(setSuccessOrError('success'));
@@ -127,7 +127,7 @@ const Investments = () => {
             };
             try {
                 dispatch(setIsLoadding(true));
-                await axios.post(`https://api-dacartelecom.herokuapp.com/api/v1/investments/create/${sectionSelect.campaignId}/${sectionSelect.id}`,body,getConfig());
+                await axios.post(`https://sistema-de-ventas-api.herokuapp.com/api/v1/investments/create/${sectionSelect.campaignId}/${sectionSelect.id}`,body,getConfig());
                 dispatch(setIsLoadding(false));
                 success = true;
                 dispatch(setSuccessOrError('success'));
@@ -146,7 +146,7 @@ const Investments = () => {
             };
             try {
                 dispatch(setIsLoadding(true));
-                await axios.post(`https://api-dacartelecom.herokuapp.com/api/v1/investments/create/${sectionSelect.campaignId}/${sectionSelect.id}`,body,getConfig());
+                await axios.post(`https://sistema-de-ventas-api.herokuapp.com/api/v1/investments/create/${sectionSelect.campaignId}/${sectionSelect.id}`,body,getConfig());
                 dispatch(setIsLoadding(false));
                 success = false;
                 dispatch(setSuccessOrError('success'));

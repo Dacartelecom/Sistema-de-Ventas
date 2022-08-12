@@ -18,14 +18,14 @@ export const getAdvisers = (section) =>async (dispatch) => {
         try {
             if (localStorage.getItem('section')) {
                 if (localStorage.getItem('role') !== 'asesor') {
-                    const res = await axios.get(`https://api-dacartelecom.herokuapp.com/api/v1/users/get/querys?roleId=5&sectionId=${localStorage.getItem('section')}`,getConfig());
+                    const res = await axios.get(`https://sistema-de-ventas-api.herokuapp.com/api/v1/users/get/querys?roleId=5&sectionId=${localStorage.getItem('section')}`,getConfig());
                     dispatch(setAdvisers(res.data.users));
                 } else {
-                    const res = await axios.get(`https://api-dacartelecom.herokuapp.com/api/v1/users/${localStorage.getItem('id')}`,getConfig());
+                    const res = await axios.get(`https://sistema-de-ventas-api.herokuapp.com/api/v1/users/${localStorage.getItem('id')}`,getConfig());
                     dispatch(setAdvisers([res.data.user]));
                 };
             } else {
-                const res = await axios.get(`https://api-dacartelecom.herokuapp.com/api/v1/users/get/querys?roleId=5&sectionId=${section}`,getConfig());
+                const res = await axios.get(`https://sistema-de-ventas-api.herokuapp.com/api/v1/users/get/querys?roleId=5&sectionId=${section}`,getConfig());
                 dispatch(setAdvisers(res.data.users));
             }
         } catch (error) {

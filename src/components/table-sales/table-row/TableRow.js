@@ -54,7 +54,7 @@ const TableRow = ({section,name='campañas',body=false}) => {
         if (section) {
             const getSales = async ()=>{
                 try {
-                    const sales = await axios.get(`https://api-dacartelecom.herokuapp.com/api/v1/solds/get/querys?startDate=${date?.startDate}&sectionId=${section.id}`,getConfig());
+                    const sales = await axios.get(`https://sistema-de-ventas-api.herokuapp.com/api/v1/solds/get/querys?startDate=${date?.startDate}&sectionId=${section.id}`,getConfig());
                     setListSales(sales.data.sales);
                 } catch (error) {
                     console.log(error.response.data);
@@ -71,7 +71,7 @@ const TableRow = ({section,name='campañas',body=false}) => {
     //         if (section?.id === parseInt(sect)) {
     //             const getSales = async ()=>{
     //                 try {
-    //                     const sales = await axios.get(`https://api-dacartelecom.herokuapp.com/api/v1/solds/get/querys?startDate=${date?.startDate}&sectionId=${section.id}`,getConfig());
+    //                     const sales = await axios.get(`https://sistema-de-ventas-api.herokuapp.com/api/v1/solds/get/querys?startDate=${date?.startDate}&sectionId=${section.id}`,getConfig());
     //                     setListSales(sales.data.sales);
     //                 } catch (error) {
     //                     console.log(error.response.data);

@@ -13,7 +13,7 @@ const Advisers = ({adviser,products,hour,date}) => {
 
     const updateSold =async (id,body)=>{
         try {
-            await axios.patch(`https://api-dacartelecom.herokuapp.com/api/v1/solds/update/${id}`,body,getConfig());
+            await axios.patch(`https://sistema-de-ventas-api.herokuapp.com/api/v1/solds/update/${id}`,body,getConfig());
             dispatch(setSuccessOrError('success'));
         } catch (error) {
             console.log(error.response.data);

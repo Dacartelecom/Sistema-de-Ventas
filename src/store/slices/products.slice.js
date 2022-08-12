@@ -15,10 +15,10 @@ export const { setProducts } = productsSlice.actions;
 export const getProducts = (section) =>async (dispatch) => {
     try {
         if (localStorage.getItem('section')) {
-            const res = await axios.get(`https://api-dacartelecom.herokuapp.com/api/v1/products/get/querys?sectionId=${localStorage.getItem('section')}`,getConfig());
+            const res = await axios.get(`https://sistema-de-ventas-api.herokuapp.com/api/v1/products/get/querys?sectionId=${localStorage.getItem('section')}`,getConfig());
             dispatch(setProducts(res.data.products));
         } else {
-            const res = await axios.get(`https://api-dacartelecom.herokuapp.com/api/v1/products/get/querys?sectionId=${section}`,getConfig());
+            const res = await axios.get(`https://sistema-de-ventas-api.herokuapp.com/api/v1/products/get/querys?sectionId=${section}`,getConfig());
             dispatch(setProducts(res.data.products));
         };
     } catch (error) {

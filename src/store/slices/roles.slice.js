@@ -16,7 +16,7 @@ export const getRoles = () =>async (dispatch) => {
     const valid = getConfig();
     if (valid.headers.Authorization !== "Bearer null") {
         try {
-            const res = await axios.get('https://api-dacartelecom.herokuapp.com/api/v1/roles',getConfig());
+            const res = await axios.get('https://sistema-de-ventas-api.herokuapp.com/api/v1/roles',getConfig());
             dispatch(setRoles(res.data.data));
         } catch (error) {
             console.log(error.response.data);

@@ -19,10 +19,10 @@ export const getCampaigns = () =>async (dispatch) => {
     if (valid.headers.Authorization !== "Bearer null") {
         try {
             if (localStorage.getItem('campaign')) {
-                const res = await axios.get(`https://api-dacartelecom.herokuapp.com/api/v1/campaigns/${localStorage.getItem('campaign')}`,getConfig());
+                const res = await axios.get(`https://sistema-de-ventas-api.herokuapp.com/api/v1/campaigns/${localStorage.getItem('campaign')}`,getConfig());
                 dispatch(setCampaigns([res.data.campaign]));
             } else {
-                const res = await axios.get("https://api-dacartelecom.herokuapp.com/api/v1/campaigns",getConfig());
+                const res = await axios.get("https://sistema-de-ventas-api.herokuapp.com/api/v1/campaigns",getConfig());
                 dispatch(setCampaigns(res.data.data));
             };
         } catch (error) {

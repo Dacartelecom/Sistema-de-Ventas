@@ -22,10 +22,10 @@ const Upload = () => {
     const uploadFile =async (body)=>{
         try {
             dispatch(setIsLoadding(true));
-            await axios.post('https://api-dacartelecom.herokuapp.com/api/v1/files/create',body,getConfig());
+            await axios.post('https://sistema-de-ventas-api.herokuapp.com/api/v1/files/create',body,getConfig());
             dispatch(setIsLoadding(false));
             dispatch(setSuccessOrError('success'));
-            const documents = await axios.get(`https://api-dacartelecom.herokuapp.com/api/v1/files?offSet=${pagination}&limit=10`,getConfig());
+            const documents = await axios.get(`https://sistema-de-ventas-api.herokuapp.com/api/v1/files?offSet=${pagination}&limit=10`,getConfig());
             dispatch(setDocuments(documents.data.data));
             reset(defaultValues);
         } catch (error) {

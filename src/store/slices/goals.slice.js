@@ -18,18 +18,18 @@ export const getGoals= (start,section,end) =>async (dispatch) => {
         try {
             if (end) {
                 if (localStorage.getItem('section')) {
-                    const res = await axios.get(`https://api-dacartelecom.herokuapp.com/api/v1/goals/get/querys?startDate=${start}&finishDate=${end}&sectionId=${localStorage.getItem('section')}`,getConfig());
+                    const res = await axios.get(`https://sistema-de-ventas-api.herokuapp.com/api/v1/goals/get/querys?startDate=${start}&finishDate=${end}&sectionId=${localStorage.getItem('section')}`,getConfig());
                     dispatch(setGoals(res.data.goals));
                 } else {
-                    const res = await axios.get(`https://api-dacartelecom.herokuapp.com/api/v1/goals/get/querys?startDate=${start}&finishDate=${end}&sectionId=${section}`,getConfig());
+                    const res = await axios.get(`https://sistema-de-ventas-api.herokuapp.com/api/v1/goals/get/querys?startDate=${start}&finishDate=${end}&sectionId=${section}`,getConfig());
                     dispatch(setGoals(res.data.goals));
                 };
             } else {
                 if (localStorage.getItem('section')) {
-                    const res = await axios.get(`https://api-dacartelecom.herokuapp.com/api/v1/goals/get/querys?startDate=${start}&sectionId=${localStorage.getItem('section')}`,getConfig());
+                    const res = await axios.get(`https://sistema-de-ventas-api.herokuapp.com/api/v1/goals/get/querys?startDate=${start}&sectionId=${localStorage.getItem('section')}`,getConfig());
                     dispatch(setGoals(res.data.goals));
                 } else {
-                    const res = await axios.get(`https://api-dacartelecom.herokuapp.com/api/v1/goals/get/querys?startDate=${start}&sectionId=${section}`,getConfig());
+                    const res = await axios.get(`https://sistema-de-ventas-api.herokuapp.com/api/v1/goals/get/querys?startDate=${start}&sectionId=${section}`,getConfig());
                     dispatch(setGoals(res.data.goals));
                 };
             };

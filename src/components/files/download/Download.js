@@ -31,7 +31,7 @@ const Download = () => {
         if (data.name.trim()) {
             try {
                 dispatch(setIsLoadding(true));
-                const res = await axios.get(`https://api-dacartelecom.herokuapp.com/api/v1/files/get/querys?name=${data.name.trim()}`,getConfig());
+                const res = await axios.get(`https://sistema-de-ventas-api.herokuapp.com/api/v1/files/get/querys?name=${data.name.trim()}`,getConfig());
                 dispatch(setIsLoadding(false));
                 setActualDocuments(res.data.data);
                 setPage(0);

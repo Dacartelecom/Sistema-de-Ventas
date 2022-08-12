@@ -76,9 +76,9 @@ const Create = () => {
         };
 
         try {
-            const res = await axios.get(`https://api-dacartelecom.herokuapp.com/api/v1/sections/get/query?campaignId=${key}`,getConfig());
+            const res = await axios.get(`https://sistema-de-ventas-api.herokuapp.com/api/v1/sections/get/query?campaignId=${key}`,getConfig());
             setCreateSections(res.data.sections);
-            const product = await axios.get(`https://api-dacartelecom.herokuapp.com/api/v1/products/get/querys?sectionId=${res.data.sections[0].id}`,getConfig());
+            const product = await axios.get(`https://sistema-de-ventas-api.herokuapp.com/api/v1/products/get/querys?sectionId=${res.data.sections[0].id}`,getConfig());
             setCreateProducts(product.data.products);
         } catch (error) {
             console.log(error.response.data);
@@ -95,7 +95,7 @@ const Create = () => {
         };
 
         try {
-            const res = await axios.get(`https://api-dacartelecom.herokuapp.com/api/v1/products/get/querys?sectionId=${key}`,getConfig());
+            const res = await axios.get(`https://sistema-de-ventas-api.herokuapp.com/api/v1/products/get/querys?sectionId=${key}`,getConfig());
             setCreateProducts(res.data.products);
         } catch (error) {
             console.log(error.response.data);
@@ -112,11 +112,11 @@ const Create = () => {
         };
 
         try {
-            const res = await axios.get(`https://api-dacartelecom.herokuapp.com/api/v1/sections/get/query?campaignId=${key}`,getConfig());
+            const res = await axios.get(`https://sistema-de-ventas-api.herokuapp.com/api/v1/sections/get/query?campaignId=${key}`,getConfig());
             dispatch(setSections(res.data.sections));
-            const product = await axios.get(`https://api-dacartelecom.herokuapp.com/api/v1/products/get/querys?sectionId=${res.data.sections[0].id}`,getConfig());
+            const product = await axios.get(`https://sistema-de-ventas-api.herokuapp.com/api/v1/products/get/querys?sectionId=${res.data.sections[0].id}`,getConfig());
             dispatch(setProducts(product.data.products));
-            const adviser = await axios.get(`https://api-dacartelecom.herokuapp.com/api/v1/users/get/querys?roleId=5&sectionId=${res.data.sections[0].id}`,getConfig());
+            const adviser = await axios.get(`https://sistema-de-ventas-api.herokuapp.com/api/v1/users/get/querys?roleId=5&sectionId=${res.data.sections[0].id}`,getConfig());
             dispatch(setAdvisers(adviser.data.users));
         } catch (error) {
             console.log(error.response.data);
@@ -133,9 +133,9 @@ const Create = () => {
         };
 
         try {
-            const product = await axios.get(`https://api-dacartelecom.herokuapp.com/api/v1/products/get/querys?sectionId=${key}`,getConfig());
+            const product = await axios.get(`https://sistema-de-ventas-api.herokuapp.com/api/v1/products/get/querys?sectionId=${key}`,getConfig());
             dispatch(setProducts(product.data.products));
-            const adviser = await axios.get(`https://api-dacartelecom.herokuapp.com/api/v1/users/get/querys?roleId=5&sectionId=${key}`,getConfig());
+            const adviser = await axios.get(`https://sistema-de-ventas-api.herokuapp.com/api/v1/users/get/querys?roleId=5&sectionId=${key}`,getConfig());
             dispatch(setAdvisers(adviser.data.users));
         } catch (error) {
             console.log(error.response.data);
@@ -157,8 +157,8 @@ const Create = () => {
             description.classList.remove('bad');
 
             try {
-                await axios.post('https://api-dacartelecom.herokuapp.com/api/v1/roles/create',body,getConfig());
-                const res = await axios.get('https://api-dacartelecom.herokuapp.com/api/v1/roles',getConfig());
+                await axios.post('https://sistema-de-ventas-api.herokuapp.com/api/v1/roles/create',body,getConfig());
+                const res = await axios.get('https://sistema-de-ventas-api.herokuapp.com/api/v1/roles',getConfig());
                 dispatch(setRoles(res.data.data));
                 dispatch(setSuccessOrError('success'));
                 setTimeout(() => {
@@ -203,7 +203,7 @@ const Create = () => {
             description.classList.remove('bad');
 
             try {
-                await axios.post('https://api-dacartelecom.herokuapp.com/api/v1/campaigns/create',body,getConfig());
+                await axios.post('https://sistema-de-ventas-api.herokuapp.com/api/v1/campaigns/create',body,getConfig());
                 dispatch(setSuccessOrError('success'));
                 setTimeout(() => {
                     dispatch(setSuccessOrError(''));
@@ -259,7 +259,7 @@ const Create = () => {
             };
 
             try {
-                await axios.post('https://api-dacartelecom.herokuapp.com/api/v1/sections/create',body,getConfig());
+                await axios.post('https://sistema-de-ventas-api.herokuapp.com/api/v1/sections/create',body,getConfig());
                 dispatch(setSuccessOrError('success'));
                 setTimeout(() => {
                     dispatch(setSuccessOrError(''));
@@ -325,7 +325,7 @@ const Create = () => {
             };
 
             try {
-                await axios.post('https://api-dacartelecom.herokuapp.com/api/v1/products/create',body,getConfig());
+                await axios.post('https://sistema-de-ventas-api.herokuapp.com/api/v1/products/create',body,getConfig());
                 dispatch(setSuccessOrError('success'));
                 setTimeout(() => {
                     dispatch(setSuccessOrError(''));
@@ -383,8 +383,8 @@ const Create = () => {
             };
 
             try {
-                await axios.patch(`https://api-dacartelecom.herokuapp.com/api/v1/roles/update/${id}`,body,getConfig());
-                const res = await axios.get('https://api-dacartelecom.herokuapp.com/api/v1/roles',getConfig());
+                await axios.patch(`https://sistema-de-ventas-api.herokuapp.com/api/v1/roles/update/${id}`,body,getConfig());
+                const res = await axios.get('https://sistema-de-ventas-api.herokuapp.com/api/v1/roles',getConfig());
                 dispatch(setRoles(res.data.data));
             } catch (error) {
                 console.log(error.response.data);
@@ -415,7 +415,7 @@ const Create = () => {
             };
 
             try {
-                await axios.patch(`https://api-dacartelecom.herokuapp.com/api/v1/campaigns/update/${id}`,body,getConfig());
+                await axios.patch(`https://sistema-de-ventas-api.herokuapp.com/api/v1/campaigns/update/${id}`,body,getConfig());
             } catch (error) {
                 console.log(error.response.data);
             };
@@ -445,7 +445,7 @@ const Create = () => {
             };
 
             try {
-                await axios.patch(`https://api-dacartelecom.herokuapp.com/api/v1/sections/update/${id}`,body,getConfig());
+                await axios.patch(`https://sistema-de-ventas-api.herokuapp.com/api/v1/sections/update/${id}`,body,getConfig());
             } catch (error) {
                 console.log(error.response.data);
             };
@@ -475,7 +475,7 @@ const Create = () => {
             };
 
             try {
-                await axios.patch(`https://api-dacartelecom.herokuapp.com/api/v1/products/update/${id}`,body,getConfig());
+                await axios.patch(`https://sistema-de-ventas-api.herokuapp.com/api/v1/products/update/${id}`,body,getConfig());
             } catch (error) {
                 console.log(error.response.data);
             };
@@ -494,8 +494,8 @@ const Create = () => {
             };
 
             try {
-                await axios.post(`https://api-dacartelecom.herokuapp.com/api/v1/goals/create/${id}`,body,getConfig());
-                const res = await axios.get(`https://api-dacartelecom.herokuapp.com/api/v1/goals/get/querys?startDate=${date}&sectionId=${section}`,getConfig());
+                await axios.post(`https://sistema-de-ventas-api.herokuapp.com/api/v1/goals/create/${id}`,body,getConfig());
+                const res = await axios.get(`https://sistema-de-ventas-api.herokuapp.com/api/v1/goals/get/querys?startDate=${date}&sectionId=${section}`,getConfig());
                 setGoals(res.data.goals);
                 dispatch(setSuccessOrError('success'));
                 //socket.current.emit('createGoal',section);
@@ -525,7 +525,7 @@ const Create = () => {
                     dayTime: dateTime
                 };
                 try {
-                    const res = await axios.post(`https://api-dacartelecom.herokuapp.com/api/v1/solds/create/${id}/${sale.id}`,body,getConfig());
+                    const res = await axios.post(`https://sistema-de-ventas-api.herokuapp.com/api/v1/solds/create/${id}/${sale.id}`,body,getConfig());
                     sale.value = "";
                     console.log(res.data);
                     //socket.current.emit('createSale',section);
@@ -554,7 +554,7 @@ const Create = () => {
         const getGoals =async ()=>{
             try {
                 const section = localStorage.getItem('section');
-                const res =await axios.get(`https://api-dacartelecom.herokuapp.com/api/v1/goals/get/querys?startDate=${date}&sectionId=${section}`,getConfig());
+                const res =await axios.get(`https://sistema-de-ventas-api.herokuapp.com/api/v1/goals/get/querys?startDate=${date}&sectionId=${section}`,getConfig());
                 setGoals(res.data.goals);
             } catch (error) {
                 console.log(error.response.data);

@@ -45,7 +45,7 @@ const Shared = () => {
         if (data.name.trim()) {
             try {
                 dispatch(setIsLoadding(true));
-                const res = await axios.get(`https://api-dacartelecom.herokuapp.com/api/v1/files/get/querys?name=${data.name.trim()}`,getConfig());
+                const res = await axios.get(`https://sistema-de-ventas-api.herokuapp.com/api/v1/files/get/querys?name=${data.name.trim()}`,getConfig());
                 dispatch(setIsLoadding(false));
                 setActualDocuments(res.data.data);
             } catch (error) {
@@ -66,7 +66,7 @@ const Shared = () => {
         if (data.userName.trim()) {
             try {
                 dispatch(setIsLoadding(true));
-                const res = await axios.get(`https://api-dacartelecom.herokuapp.com/api/v1/users/get/querys?roleId=${selectRol?.id}&name=${data.userName.trim()}`,getConfig());
+                const res = await axios.get(`https://sistema-de-ventas-api.herokuapp.com/api/v1/users/get/querys?roleId=${selectRol?.id}&name=${data.userName.trim()}`,getConfig());
                 dispatch(setIsLoadding(false))
                 setUSers(res.data.users);
             } catch (error) {
@@ -83,7 +83,7 @@ const Shared = () => {
 
         try {
             dispatch(setIsLoadding(true));
-            const res = await axios.patch(`https://api-dacartelecom.herokuapp.com/api/v1/files/update/${file}`,body,getConfig());
+            const res = await axios.patch(`https://sistema-de-ventas-api.herokuapp.com/api/v1/files/update/${file}`,body,getConfig());
             dispatch(setIsLoadding(false));
             dispatch(setSuccessOrError('success'));
             //socket.current.emit('sendFile',id);
@@ -111,7 +111,7 @@ const Shared = () => {
 
     const downloadFile =async id=>{
         try {
-            await axios.delete(`https://api-dacartelecom.herokuapp.com/api/v1/files/permission/${id}`,getConfig());
+            await axios.delete(`https://sistema-de-ventas-api.herokuapp.com/api/v1/files/permission/${id}`,getConfig());
             dispatch(getSharedDocuments());
         } catch (error) {
             console.log(error.response.data);

@@ -27,7 +27,7 @@ const Login = () => {
 
     const login = async data=>{
         try {
-            const response = await axios.post('https://api-dacartelecom.herokuapp.com/api/v1/users/login',data);
+            const response = await axios.post('https://sistema-de-ventas-api.herokuapp.com/api/v1/users/login',data);
             localStorage.setItem("id",response.data.id);
             localStorage.setItem("token",response.data.token);
             localStorage.setItem("role",response.data.role);
