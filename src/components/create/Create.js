@@ -143,7 +143,6 @@ const Create = () => {
     };
 
     const create =async (data)=>{
-        console.log(data);
 
         if (data.role.trim() && data.descriptionRole.trim()) {
             const name = document.getElementById('name-role');
