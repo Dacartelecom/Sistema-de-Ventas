@@ -1,5 +1,6 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
+//import { useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useForm } from 'react-hook-form';
 import getConfig from '../../utils/getConfig';
@@ -9,10 +10,12 @@ import { setProducts } from '../../store/slices/products.slice';
 import { setAdvisers } from '../../store/slices/advisers.slice';
 import { setSuccessOrError } from '../../store/slices/successOrError.slice';
 import Advisers from './advisers/Advisers';
+//import { io } from 'socket.io-client';
 
 const Create = () => {
     let total = 0;
 
+    const section = localStorage.getItem('section');
     const { register, handleSubmit, reset } = useForm();
     const role = useSelector(state=>state.role);
     const roles = useSelector(state=>state.roles);
@@ -25,6 +28,13 @@ const Create = () => {
     const [createProducts,setCreateProducts] = useState([]);
     const [goals,setGoals] = useState([]);
     const [hour,setHour] = useState(new Date().getHours());
+
+    //web sockets
+    // const socket = useRef();
+
+    // useEffect(()=>{
+    //     socket.current = io('ws:https://server-io-dacartelecom.herokuapp.com/');
+    // },[]);
 
     let day = new Date().getDate();
     let month = new Date().getMonth()+1;
@@ -475,10 +485,9 @@ const Create = () => {
     };
 
     const goal =async data=>{
-        const id = localStorage.getItem('id');
-        const section = localStorage.getItem('section');
 
         if (data.goal.trim()) {
+            const id = localStorage.getItem('id');
             const body = {
                 goal: data.goal.trim(),
                 day: date
@@ -489,6 +498,7 @@ const Create = () => {
                 const res = await axios.get(`https://api-dacartelecom.herokuapp.com/api/v1/goals/get/querys?startDate=${date}&sectionId=${section}`,getConfig());
                 setGoals(res.data.goals);
                 dispatch(setSuccessOrError('success'));
+                //socket.current.emit('createGoal',section);
                 setTimeout(() => {
                     dispatch(setSuccessOrError(''));
                 }, 1500);
@@ -518,6 +528,9 @@ const Create = () => {
                     const res = await axios.post(`https://api-dacartelecom.herokuapp.com/api/v1/solds/create/${id}/${sale.id}`,body,getConfig());
                     sale.value = "";
                     console.log(res.data);
+                    //socket.current.emit('createSale',section);
+                    //socket.current.emit('createSaleUser',id);
+                    //socket.current.emit('cerateSaleProduct',sale.id);
                     dispatch(setSuccessOrError('success'));
                 } catch (error) {
                     console.log(error.response.data);

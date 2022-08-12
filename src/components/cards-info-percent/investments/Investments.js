@@ -3,14 +3,15 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useForm } from 'react-hook-form';
 import axios from 'axios';
 import getConfig from '../../../utils/getConfig';
-import { setInvestments } from '../../../store/slices/investments.slice';
+import { getInvestments } from '../../../store/slices/investments.slice';
 import { setSuccessOrError } from '../../../store/slices/successOrError.slice';
+import { setIsLoadding } from '../../../store/slices/isLoadding.slice';
 
 const Investments = () => {
 
     const year = new Date().getFullYear();
     let month = new Date().getMonth() + 1;
-    let day = new Date().getDay();
+    let day = new Date().getDate();
 
     if (month < 10) {
         month = `0${month}`;
@@ -24,6 +25,7 @@ const Investments = () => {
     const investments = useSelector(state=>state.investments);
     const solds = useSelector(state=>state.solds);
     const role = useSelector(state=>state.role);
+    const date = useSelector(state=>state.date);
     const dispatch = useDispatch();
     const { register, handleSubmit, reset } = useForm();
     const defaultValues = {
@@ -74,7 +76,14 @@ const Investments = () => {
         updatedAt = updatedAt.split("T").pop();
         updatedAt = updatedAt.split(".").shift();
 
-        let hour = parseInt(updatedAt.split(":").shift()) - 5;
+        let hour;
+
+        if (parseInt(updatedAt.split(":").shift()) !== 0) {
+            hour = parseInt(updatedAt.split(":").shift()) - 5;
+        } else {
+            hour = 24 -5;
+        };
+
 
         if (hour > 12) {
             hour = hour - 12
@@ -88,22 +97,25 @@ const Investments = () => {
     };
 
     const submit =async (data)=>{
-        const date = `${year}-${month}-${day}`;
-        let success;
+        const actualDay = `${year}-${month}-${day}`;
+        let success = false
 
         if (data.investments.trim() !== '') {
             const body = {
                 name: 'inversion',
                 investment: data.investments,
-                day: date
+                day: actualDay
             };
             try {
-                const res = await axios.post(`https://api-dacartelecom.herokuapp.com/api/v1/investments/create/${sectionSelect.campaignId}/${sectionSelect.id}`,body,getConfig());
-                success = res.data;
+                dispatch(setIsLoadding(true));
+                await axios.post(`https://api-dacartelecom.herokuapp.com/api/v1/investments/create/${sectionSelect.campaignId}/${sectionSelect.id}`,body,getConfig());
+                dispatch(setIsLoadding(false));
+                success = true;
                 dispatch(setSuccessOrError('success'));
             } catch (error) {
-                console.log(error.response.data);
+                dispatch(setIsLoadding(false));
                 dispatch(setSuccessOrError('error'));
+                console.log(error.response.data);
             };
         };
 
@@ -111,13 +123,17 @@ const Investments = () => {
             const body = {
                 name: 'lead',
                 investment: data.lead,
-                day: date
+                day: actualDay
             };
             try {
-                const res = await axios.post(`https://api-dacartelecom.herokuapp.com/api/v1/investments/create/${sectionSelect.campaignId}/${sectionSelect.id}`,body,getConfig());
-                success = res.data;
+                dispatch(setIsLoadding(true));
+                await axios.post(`https://api-dacartelecom.herokuapp.com/api/v1/investments/create/${sectionSelect.campaignId}/${sectionSelect.id}`,body,getConfig());
+                dispatch(setIsLoadding(false));
+                success = true;
                 dispatch(setSuccessOrError('success'));
             } catch (error) {
+                dispatch(setIsLoadding(false));
+                dispatch(setSuccessOrError('error'));
                 console.log(error.response.data);
             };
         };
@@ -126,24 +142,26 @@ const Investments = () => {
             const body = {
                 name: 'google',
                 investment: data.google,
-                day: date
+                day: actualDay
             };
             try {
-                const res = await axios.post(`https://api-dacartelecom.herokuapp.com/api/v1/investments/create/${sectionSelect.campaignId}/${sectionSelect.id}`,body,getConfig());
-                success = res.data;
+                dispatch(setIsLoadding(true));
+                await axios.post(`https://api-dacartelecom.herokuapp.com/api/v1/investments/create/${sectionSelect.campaignId}/${sectionSelect.id}`,body,getConfig());
+                dispatch(setIsLoadding(false));
+                success = false;
                 dispatch(setSuccessOrError('success'));
             } catch (error) {
-                console.log(error.response.data);
+                dispatch(setIsLoadding(true));
                 dispatch(setSuccessOrError('error'));
+                console.log(error.response.data);
             };
         };
 
         if (success) {
-            try {
-                const investments = await axios.get(`https://api-dacartelecom.herokuapp.com/api/v1/investments/get/querys?startDate=${date}&sectionId=${sectionSelect.id}`,getConfig());
-                dispatch(setInvestments(investments.data.investments));
-            } catch (error) {
-                console.log(error.response.data);
+            if (date.endDate) {
+                dispatch(getInvestments(date.startDate,sectionSelect.id,date.endDate));
+            } else {
+                dispatch(getInvestments(date.startDate,sectionSelect.id));
             };
         };
         

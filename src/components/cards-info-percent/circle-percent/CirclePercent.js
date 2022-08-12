@@ -1,7 +1,9 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
+//import { useRef } from 'react';
 import { useSelector } from 'react-redux';
 import getConfig from '../../../utils/getConfig';
+//import { io } from 'socket.io-client';
 
 const CirclePercent = ({radio,color,percent = 0,size = 1,product,goal}) => {
     let total = 0;
@@ -10,6 +12,13 @@ const CirclePercent = ({radio,color,percent = 0,size = 1,product,goal}) => {
     const date = useSelector(state=>state.date);
     const advisers = useSelector(state=>state.advisers);
     const [solds,setSolds] = useState([]);
+
+    //web sockets
+    // const socket = useRef();
+
+    // useEffect(()=>{
+    //     socket.current = io('ws:https://server-io-dacartelecom.herokuapp.com/');
+    // },[]);
 
     useEffect(()=>{
         if (product) {
@@ -20,6 +29,7 @@ const CirclePercent = ({radio,color,percent = 0,size = 1,product,goal}) => {
                             const data = await axios.get(`https://api-dacartelecom.herokuapp.com/api/v1/solds/get/querys?startDate=${date?.startDate}&productId=${product.id}`,getConfig());
                             setSolds(data.data.sales);
                         } catch (error) {
+                            setSolds([]);
                             console.log(error.response.data);
                         }
                     }
@@ -31,6 +41,7 @@ const CirclePercent = ({radio,color,percent = 0,size = 1,product,goal}) => {
                             const data = await axios.get(`https://api-dacartelecom.herokuapp.com/api/v1/solds/get/querys?startDate=${date?.startDate}&finishDate=${date?.endDate}&productId=${product.id}`,getConfig());
                             setSolds(data.data.sales);
                         } catch (error) {
+                            setSolds([]);
                             console.log(error.response.data);
                         }
                     }
@@ -44,6 +55,7 @@ const CirclePercent = ({radio,color,percent = 0,size = 1,product,goal}) => {
                             const data = await axios.get(`https://api-dacartelecom.herokuapp.com/api/v1/solds/get/querys?startDate=${date?.startDate}&userId=${advisers[0]?.id}&productId=${product.id}`,getConfig());
                             setSolds(data.data.sales);
                         } catch (error) {
+                            setSolds([]);
                             console.log(error.response.data);
                         }
                     }
@@ -55,6 +67,7 @@ const CirclePercent = ({radio,color,percent = 0,size = 1,product,goal}) => {
                             const data = await axios.get(`https://api-dacartelecom.herokuapp.com/api/v1/solds/get/querys?startDate=${date?.startDate}&finishDate=${date?.endDate}&userId=${advisers[0]?.id}&productId=${product.id}`,getConfig());
                             setSolds(data.data.sales);
                         } catch (error) {
+                            setSolds([]);
                             console.log(error.response.data);
                         }
                     }
@@ -64,6 +77,68 @@ const CirclePercent = ({radio,color,percent = 0,size = 1,product,goal}) => {
             };
         };
     },[product,date,advisers]);
+
+    // useEffect(()=>{
+
+    //     socket.current.on('newSaleProduct', prodct=>{
+    //         if (product?.id === parseInt(prodct)) { 
+    //             if (localStorage.getItem('role') !== 'asesor') {
+    //                 if (!date.endDate) {
+    //                     const getData = async ()=>{
+    //                         try {
+    //                             const data = await axios.get(`https://api-dacartelecom.herokuapp.com/api/v1/solds/get/querys?startDate=${date?.startDate}&productId=${product.id}`,getConfig());
+    //                             setSolds(data.data.sales);
+    //                         } catch (error) {
+    //                             setSolds([]);
+    //                             console.log(error.response.data);
+    //                         }
+    //                     }
+            
+    //                     getData();
+    //                 } else {
+    //                     const getData = async ()=>{
+    //                         try {
+    //                             const data = await axios.get(`https://api-dacartelecom.herokuapp.com/api/v1/solds/get/querys?startDate=${date?.startDate}&finishDate=${date?.endDate}&productId=${product.id}`,getConfig());
+    //                             setSolds(data.data.sales);
+    //                         } catch (error) {
+    //                             setSolds([]);
+    //                             console.log(error.response.data);
+    //                         }
+    //                     }
+            
+    //                     getData();
+    //                 };
+    //             } else {
+    //                 if (!date.endDate) {
+    //                     const getData = async ()=>{
+    //                         try {
+    //                             const data = await axios.get(`https://api-dacartelecom.herokuapp.com/api/v1/solds/get/querys?startDate=${date?.startDate}&userId=${advisers[0]?.id}&productId=${product.id}`,getConfig());
+    //                             setSolds(data.data.sales);
+    //                         } catch (error) {
+    //                             setSolds([]);
+    //                             console.log(error.response.data);
+    //                         }
+    //                     }
+            
+    //                     getData();
+    //                 } else {
+    //                     const getData = async ()=>{
+    //                         try {
+    //                             const data = await axios.get(`https://api-dacartelecom.herokuapp.com/api/v1/solds/get/querys?startDate=${date?.startDate}&finishDate=${date?.endDate}&userId=${advisers[0]?.id}&productId=${product.id}`,getConfig());
+    //                             setSolds(data.data.sales);
+    //                         } catch (error) {
+    //                             setSolds([]);
+    //                             console.log(error.response.data);
+    //                         }
+    //                     }
+            
+    //                     getData();
+    //                 };
+    //             };
+    //         };
+    //     });
+
+    // },[advisers,date,product?.id]);
 
     if (solds.length) {
         solds.map(sold=>{

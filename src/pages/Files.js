@@ -1,11 +1,13 @@
-import React, { useState } from 'react';
-import { useSelector } from 'react-redux';
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import NavLeft from '../components/nav-left/NavLeft';
 import NavTop from '../components/nav-top/NavTop';
 import Reloj from '../components/reloj/Reloj';
 import Upload from '../components/files/upload/Upload';
 import Download from '../components/files/download/Download';
 import Shared from '../components/files/shared/Shared';
+import { getDocuments } from '../store/slices/documents.slice';
+import { getSharedDocuments } from '../store/slices/sharedDocuments.slice';
 
 const Files = () => {
     
@@ -13,6 +15,12 @@ const Files = () => {
     const [files,setFiles] = useState(true);
     const [shared,setShared] = useState(false);
     const [upload,setUpload] = useState(false);
+    const dispatch = useDispatch();
+
+    useEffect(()=>{
+      dispatch(getDocuments(0,10));
+      dispatch(getSharedDocuments());
+    },[dispatch]);
 
     return (
       <div className='page-container'>

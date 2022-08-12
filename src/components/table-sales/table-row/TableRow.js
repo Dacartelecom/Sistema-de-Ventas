@@ -1,12 +1,20 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
+//import { useRef } from 'react';
 import { useSelector } from 'react-redux';
 import getConfig from '../../../utils/getConfig';
+//import { io } from 'socket.io-client';
 
 const TableRow = ({section,name='campañas',body=false}) => {
 
     const date = useSelector(state=>state.date);
     const [listSales,setListSales] = useState([]);
+
+    // const socket = useRef();
+
+    // useEffect(()=>{
+    //     socket.current = io('ws:https://server-io-dacartelecom.herokuapp.com/');
+    // },[]);
 
     let total = 0
 
@@ -47,7 +55,6 @@ const TableRow = ({section,name='campañas',body=false}) => {
             const getSales = async ()=>{
                 try {
                     const sales = await axios.get(`https://api-dacartelecom.herokuapp.com/api/v1/solds/get/querys?startDate=${date?.startDate}&sectionId=${section.id}`,getConfig());
-
                     setListSales(sales.data.sales);
                 } catch (error) {
                     console.log(error.response.data);
@@ -57,6 +64,25 @@ const TableRow = ({section,name='campañas',body=false}) => {
             getSales();
         }
     },[section,date?.startDate]);
+
+    // useEffect(()=>{
+
+    //     socket.current.on('newSale', sect=>{
+    //         if (section?.id === parseInt(sect)) {
+    //             const getSales = async ()=>{
+    //                 try {
+    //                     const sales = await axios.get(`https://api-dacartelecom.herokuapp.com/api/v1/solds/get/querys?startDate=${date?.startDate}&sectionId=${section.id}`,getConfig());
+    //                     setListSales(sales.data.sales);
+    //                 } catch (error) {
+    //                     console.log(error.response.data);
+    //                 };
+    //             };
+    
+    //             getSales();
+    //         };
+    //     });
+
+    // },[date?.startDate,section?.id]);
 
     if (listSales.length) {
         listSales.map(sale=>{
