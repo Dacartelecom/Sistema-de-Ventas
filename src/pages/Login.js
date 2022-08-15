@@ -5,6 +5,8 @@ import { useNavigate } from 'react-router-dom';
 import { useDispatch,useSelector } from 'react-redux';
 import { loggin } from '../store/slices/loged.slice';
 import { setRole } from '../store/slices/role.slice';
+import { setIsLoadding } from '../store/slices/isLoadding.slice';
+import { setSuccessOrError } from '../store/slices/successOrError.slice';
 
 const Login = () => {
 
@@ -27,6 +29,7 @@ const Login = () => {
 
     const login = async data=>{
         try {
+            dispatch(setIsLoadding(true));
             const response = await axios.post('https://sistema-de-ventas-api.herokuapp.com/api/v1/users/login',data);
             localStorage.setItem("id",response.data.id);
             localStorage.setItem("token",response.data.token);
@@ -41,12 +44,15 @@ const Login = () => {
             setErrorUser(false);
             setErrorPassword(false);
             dispatch(loggin(true));
+            dispatch(setIsLoadding(false));
             if (response.data.role !== 'contador') {
                 navigate("/home");
             } else {
                 navigate("/files")
             }
         } catch (error) {
+            dispatch(setIsLoadding(false));
+            dispatch(setSuccessOrError('error'));
             console.log(error.response.data);
             if (error.response.data.message === 'Invalid password') {
                 setErrorUser(false);
@@ -55,6 +61,10 @@ const Login = () => {
             setErrorUser(true);
             setErrorPassword(true);
         };
+
+        setTimeout(() => {
+            dispatch(setSuccessOrError(''));
+        }, 1000);
     };
     return (
         <div className='login-container'>
