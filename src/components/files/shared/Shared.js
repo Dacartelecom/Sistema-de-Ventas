@@ -1,6 +1,6 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
-//import { useRef } from 'react';
+import { useRef } from 'react';
 import { useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
 import { getDocuments } from '../../../store/slices/documents.slice';
@@ -8,7 +8,7 @@ import { setIsLoadding } from '../../../store/slices/isLoadding.slice';
 import { getSharedDocuments } from '../../../store/slices/sharedDocuments.slice';
 import { setSuccessOrError } from '../../../store/slices/successOrError.slice';
 import getConfig from '../../../utils/getConfig';
-//import { io } from 'socket.io-client';
+import { io } from 'socket.io-client';
 
 const Shared = () => {
 
@@ -27,11 +27,11 @@ const Shared = () => {
     const validRoles = ['administrador','marketing','contador'];
 
     //sockets
-    // const socket = useRef();
+    const socket = useRef();
 
-    // useEffect(()=>{
-    //     socket.current = io('ws:https://server-io-dacartelecom.herokuapp.com/');
-    // },[]);
+    useEffect(()=>{
+        socket.current = io('https://sistema-de-ventas-api.herokuapp.com');
+    },[]);
 
     useEffect(()=>{
         setActualDocuments(documents);
@@ -86,7 +86,7 @@ const Shared = () => {
             const res = await axios.patch(`https://sistema-de-ventas-api.herokuapp.com/api/v1/files/update/${file}`,body,getConfig());
             dispatch(setIsLoadding(false));
             dispatch(setSuccessOrError('success'));
-            //socket.current.emit('sendFile',id);
+            socket.current.emit('sendFile',id);
             console.log(res);
         } catch (error) {
             dispatch(setIsLoadding(false));
@@ -99,15 +99,15 @@ const Shared = () => {
         }, 1500);
     };
 
-    // useEffect(()=>{
+    useEffect(()=>{
 
-    //     socket.current.on('reciveFile',id=>{
-    //         if (id === parseInt(localStorage.getItem('id'))) {
-    //           dispatch(getSharedDocuments());  
-    //         };
-    //     });
+        socket.current.on('reciveFile',id=>{
+            if (id === parseInt(localStorage.getItem('id'))) {
+              dispatch(getSharedDocuments());  
+            };
+        });
 
-    // },[dispatch]);
+    },[dispatch]);
 
     const downloadFile =async id=>{
         try {

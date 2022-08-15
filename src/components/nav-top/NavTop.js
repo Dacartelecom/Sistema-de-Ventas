@@ -1,6 +1,6 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
-//import { useRef } from 'react';
+import { useRef } from 'react';
 import Dacar from '../../img/dacartelecom-logo.webp';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
@@ -25,7 +25,7 @@ import { setSharedDocuments } from '../../store/slices/sharedDocuments.slice';
 import { useForm } from 'react-hook-form';
 import { setSuccessOrError } from '../../store/slices/successOrError.slice';
 import { setPagination } from '../../store/slices/pagination.slice';
-//import { io } from 'socket.io-client';
+import { io } from 'socket.io-client';
 
 const NavTop = () => {
 
@@ -75,25 +75,25 @@ const NavTop = () => {
     };
 
     //sockets
-    //const socket = useRef();
+    const socket = useRef();
 
-    // useEffect(()=>{
-    //     socket.current = io('ws:https://server-io-dacartelecom.herokuapp.com/');
-    // },[]);
+    useEffect(()=>{
+        socket.current = io('https://sistema-de-ventas-api.herokuapp.com');
+    },[]);
 
-    // useEffect(()=>{
-    //     socket.current.on('newGoal',section=>{
-    //         if (selectSect?.id === parseInt(section)) {
-    //             dispatch(getGoals(date,section));
-    //         }
-    //     });
+    useEffect(()=>{
+        socket.current.on('newGoal',section=>{
+            if (selectSect?.id === parseInt(section)) {
+                dispatch(getGoals(date,section));
+            }
+        });
 
-    //     socket.current.on('newSale', section=>{
-    //         if (selectSect?.id === parseInt(section)) {
-    //             dispatch(getSolds(date,section));  
-    //         };
-    //     });
-    // },[dispatch,date,selectSect?.id]);
+        socket.current.on('newSale', section=>{
+            if (selectSect?.id === parseInt(section)) {
+                dispatch(getSolds(date,section));  
+            };
+        });
+    },[dispatch,date,selectSect?.id]);
 
     useEffect(()=>{
         dispatch(setRole(localStorage.getItem("role")));
