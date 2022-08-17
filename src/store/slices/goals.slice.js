@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+// import { useNavigate } from 'react-router-dom';
 import getConfig from '../../utils/getConfig';
 
 export const goalsSlice = createSlice({
@@ -14,7 +14,7 @@ export const goalsSlice = createSlice({
 export const { setGoals } = goalsSlice.actions;
 
 export const getGoals= (start,section,end) =>async (dispatch) => {
-    const navigate = useNavigate();
+    // const navigate = useNavigate();
     const valid = getConfig();
     if (valid.headers.Authorization !== "Bearer null") {
         try {
@@ -38,9 +38,9 @@ export const getGoals= (start,section,end) =>async (dispatch) => {
         } catch (error) {
             dispatch(setGoals([]));
             console.log(error.response.data);
-            if (error.response.data.message === 'jwt expired') {
-                navigate("/")
-            };
+            // if (error.response.data.message === 'jwt expired') {
+            //     navigate("/")
+            // };
         };
     };
 };

@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+// import { useNavigate } from 'react-router-dom';
 import getConfig from '../../utils/getConfig';
 
 export const productsSlice = createSlice({
@@ -14,7 +14,7 @@ export const productsSlice = createSlice({
 export const { setProducts } = productsSlice.actions;
 
 export const getProducts = (section) =>async (dispatch) => {
-    const navigate = useNavigate();
+    // const navigate = useNavigate();
     try {
         if (localStorage.getItem('section')) {
             const res = await axios.get(`https://sistema-de-ventas-api.herokuapp.com/api/v1/products/get/querys?sectionId=${localStorage.getItem('section')}`,getConfig());
@@ -25,9 +25,9 @@ export const getProducts = (section) =>async (dispatch) => {
         };
     } catch (error) {
         console.log(error.response.data);
-        if (error.response.data.message === 'jwt expired') {
-            navigate("/")
-        };
+        // if (error.response.data.message === 'jwt expired') {
+        //     navigate("/")
+        // };
     };
 };
 

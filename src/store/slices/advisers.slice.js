@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
 import getConfig from '../../utils/getConfig';
-import { useNavigate } from 'react-router-dom';
+// import { useNavigate } from 'react-router-dom';
 
 export const advisersSlice = createSlice({
     name: 'advisers',
@@ -14,7 +14,7 @@ export const advisersSlice = createSlice({
 export const { setAdvisers } = advisersSlice.actions;
 
 export const getAdvisers = (section) =>async (dispatch) => {
-    const navigate = useNavigate();
+    // const navigate = useNavigate();
     const valid = getConfig();
     if (valid.headers.Authorization !== "Bearer null") {
         try {
@@ -32,9 +32,9 @@ export const getAdvisers = (section) =>async (dispatch) => {
             }
         } catch (error) {
             console.log(error.response.data);
-            if (error.response.data.message === 'jwt expired') {
-                navigate("/")
-            };
+            // if (error.response.data.message === 'jwt expired') {
+            //     navigate("/")
+            // };
         };
     };
 };

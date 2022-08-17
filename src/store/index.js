@@ -16,7 +16,6 @@ import location from './slices/location.slice';
 import successOrError from './slices/successOrError.slice';
 import documents from './slices/documents.slice';
 import sharedDocuments from './slices/sharedDocuments.slice';
-import pagination from './slices/pagination.slice';
 import isLoadding from './slices/isLoadding.slice';
 
 export default configureStore({
@@ -38,7 +37,6 @@ export default configureStore({
     successOrError,
     documents,
     sharedDocuments,
-    pagination,
     isLoadding,
 	}
 });
