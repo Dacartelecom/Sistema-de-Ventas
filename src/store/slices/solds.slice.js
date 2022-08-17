@@ -1,5 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 import getConfig from '../../utils/getConfig';
 
 export const soldsSlice = createSlice({
@@ -13,6 +14,7 @@ export const soldsSlice = createSlice({
 export const { setSolds } = soldsSlice.actions;
 
 export const getSolds = (start,section,end) =>async (dispatch) => {
+    const navigate = useNavigate();
     const valid = getConfig();
     if (valid.headers.Authorization !== "Bearer null") {
         try {
@@ -46,6 +48,9 @@ export const getSolds = (start,section,end) =>async (dispatch) => {
         } catch (error) {
             dispatch(setSolds([]));
             console.log(error.response.data);
+            if (error.response.data.message === 'jwt expired') {
+                navigate("/")
+            };
         };
     };
 };

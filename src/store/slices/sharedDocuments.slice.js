@@ -1,5 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 import getConfig from '../../utils/getConfig';
 
 export const sharedDocumentsSlice = createSlice({
@@ -13,6 +14,7 @@ export const sharedDocumentsSlice = createSlice({
 export const { setSharedDocuments } = sharedDocumentsSlice.actions;
 
 export const getSharedDocuments = () =>async (dispatch) => {
+    const navigate = useNavigate();
     let proob = getConfig()
     if (proob.headers.Authorization !== "Bearer null") {
         try {
@@ -20,6 +22,9 @@ export const getSharedDocuments = () =>async (dispatch) => {
             dispatch(setSharedDocuments(res.data.data));
         } catch (error) {
             console.log(error.response.data);
+            if (error.response.data.message === 'jwt expired') {
+                navigate("/")
+            };
         };
     };
 };

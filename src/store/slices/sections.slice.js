@@ -1,5 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 import getConfig from '../../utils/getConfig';
 import { setSectionSelect } from './sectionSelect.slice';
 import { setUgi } from './ugiVisible.slice';
@@ -17,6 +18,7 @@ export const sectionsSlice = createSlice({
 export const { setSections } = sectionsSlice.actions;
 
 export const getSections = (campaign) =>async (dispatch) => {
+    const navigate = useNavigate();
     const valid = getConfig();
     if (valid.headers.Authorization !== "Bearer null") {
         try {
@@ -33,6 +35,9 @@ export const getSections = (campaign) =>async (dispatch) => {
             };
         } catch (error) {
             console.log(error.response.data);
+            if (error.response.data.message === 'jwt expired') {
+                navigate("/")
+            };
         };
     };
 };
