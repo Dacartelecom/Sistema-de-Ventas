@@ -228,7 +228,7 @@ const Investments = () => {
                 <div className='investments-title'>
                     <h4>Inversiones</h4>
                     {
-                        role !== 'contador' && role !== 'supervisor' ?
+                        role !== 'contador' && role !== 'supervisor' && role !== 'viewer' ?
                             <div>
                                 <a data-bs-toggle="modal" href="#investments" role="button">
                                     <ion-icon name="pencil"></ion-icon>
